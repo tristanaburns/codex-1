@@ -51,6 +51,8 @@ import { spawnSync } from "child_process";
 import fs from "fs";
 import { render } from "ink";
 import meow from "meow";
+import path from "path";
+import { spawnSync } from "child_process";
 import os from "os";
 import path from "path";
 import React from "react";
@@ -215,6 +217,13 @@ const cli = meow(
       },
     },
   },
+  flags: {
+    // memory options
+    'persist-history': { type: 'boolean', default: false, description: 'Archive full chat history to draft/archives' },
+    'prune-history': { type: 'boolean', default: false, description: 'Prune chat history over threshold' },
+    'prune-threshold': { type: 'number', default: 0.5, description: 'Fraction of history to retain when pruning' },
+    'load-history': { type: 'string', description: 'Path to history JSON file to preload' },
+    'history-dir': { type: 'string', description: 'Base directory for .codex/session files' },
 );
 
 // ---------------------------------------------------------------------------
